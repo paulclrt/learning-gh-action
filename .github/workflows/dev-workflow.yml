@@ -16,11 +16,13 @@ jobs:
           python3 -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
-      - name: "Save virtual env"
-        uses: actions/upload-artifact@v4
+      - name: "cache virtual env"
+        uses: actions/cache@v4
         with: 
-          name: venv
           path: venv
+          key: ${{runner.os}}-pip-${{ hashfiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
 
   test:
