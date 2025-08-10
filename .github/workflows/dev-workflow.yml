@@ -34,10 +34,10 @@ jobs:
         with: 
           name: venv
           path: venv
-      - name: "Activate virtual environement"
-        run: source venv/bin/activate
-      - name: "Run pytest"
-        run: pytest
+      - name: "Running pytest"
+        run: |
+          source venv/bin/activate
+          pytest
 
   deploy:
     runs-on: ubuntu-latest
