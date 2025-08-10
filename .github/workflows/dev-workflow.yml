@@ -27,10 +27,16 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    strategy: matrix
+      python-version: [3.9, 3.10, 3.11]
     needs: build
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v4
+      - name: "Check python version ${{ matrix.python-version }}"
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: "Retrieve cache"
         uses: actions/cache@v4
         with:
@@ -41,13 +47,19 @@ jobs:
 
       - name: "Recreate virtual env (without installing again --> use cache)"
         run: |
+          python --version
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
       - name: "Run tests"
         run: |
           source venv/bin/activate
-          pytest
+          pytest --junitxml=test-results.xml
+      - name: "Upload test results"
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.python-version }}.xml
+          path: test-results.xml
 
   deploy:
     runs-on: ubuntu-latest
