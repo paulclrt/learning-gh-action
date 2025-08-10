@@ -1,4 +1,4 @@
-
+import requests
 
 def test_important():
     """
@@ -25,8 +25,16 @@ def test_fine():
     assert 1+1 == 2
 
 
-# def test_ohhhh_nooooo_this_fails():
-#     """
-#     What a shitty repo this is
-#     """
-#     assert 1+1 == 3
+def test_ohhhh_nooooo_this_fails():
+    """
+    What a shitty repo this is
+    """
+    assert 1+1 == 3
+
+
+def test_request_fails():
+    """
+    What a shitty repo this is
+    """
+    req = requests.get("http://paul-claret.pro/zaduazhdaz")
+    assert req.status_code == 200
