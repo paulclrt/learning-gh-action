@@ -1,0 +1,38 @@
+name: "Dev branch build, test, deploy - CI"
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+      - name: "Install dependencies"
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+      - name: "Run pytest"
+        run: pytest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: "Checkout Code"
+        uses: actions/checkout@v4
+      - name: "deploy using opentofu"
+        run: echo "Hello World :)"
+        
