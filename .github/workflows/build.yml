@@ -12,9 +12,11 @@ jobs:
       - name: "Checkout code"
         uses: actions/checkout@v2
       - name: "Installation dependencies"
-        run: echo "TEST"
+        run: python3 -m venv .venv
+        run: source .venv/bin/activate
+        run: pip install -r requirements.txt
       - name: "Execution Tests"
-        run: echo "REAL TEST"
+        run: pytest
       # - name: "Upload artifacts"
       #   uses: actions/upload-artifact@v2
       #   with: 
