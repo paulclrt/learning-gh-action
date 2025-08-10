@@ -5,6 +5,9 @@ on:
     branches:
       - dev
       - workflow-sandbox
+  pull_request:
+    branches:
+      - dev
 
 jobs:
   build:
