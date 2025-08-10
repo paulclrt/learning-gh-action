@@ -16,6 +16,11 @@ jobs:
           python3 -m venv .venv
           source .venv/bin/activate
           pip install -r requirements.txt
+      - name: "Save virtual env"
+        uses: actions/upload-artifact@v4
+        with: 
+          name: venv
+          path: .venv
 
 
   test:
@@ -24,6 +29,12 @@ jobs:
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v4
+      - name: "Retrieve virtual env"
+        uses: actions/download-artifact@v4
+        with: 
+          name: venv
+      - name: "Activate virtual environement"
+        run: source .venv/bin/activate
       - name: "Run pytest"
         run: pytest
 
