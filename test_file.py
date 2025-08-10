@@ -29,7 +29,7 @@ def test_ohhhh_nooooo_this_fails():
     """
     What a shitty repo this is
     """
-    assert 1+1 == 3
+    assert 2+1 == 3
 
 
 def test_request_fails():
@@ -37,4 +37,4 @@ def test_request_fails():
     What a shitty repo this is
     """
     req = requests.get("http://paul-claret.pro/zaduazhdaz")
-    assert req.status_code == 200
+    assert req.status_code == 404
