@@ -28,6 +28,5 @@ jobs:
         uses: actions/download-artifacts@v2
         with:
           name: test-results
-        run: 
       - name: "Echos shit"
         run: echo "shit"
