@@ -6,6 +6,24 @@ def test_important():
     """
     assert 1+1 == 2
 
+def test_win():
+    """
+    THis is a shit test to learn workflows
+    """
+    assert 1+1 == 2
+
+def test_works():
+    """
+    THis is a shit test to learn workflows
+    """
+    assert 1+1 == 2
+
+def test_fine():
+    """
+    THis is a shit test to learn workflows
+    """
+    assert 1+1 == 2
+
 
 # def test_ohhhh_nooooo_this_fails():
 #     """
