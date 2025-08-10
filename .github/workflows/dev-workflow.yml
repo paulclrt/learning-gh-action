@@ -69,6 +69,7 @@ jobs:
           path: test-results.xml
 
   deploy:
+    if: github.ref == "refs/heads/dev" # avoid deploying when it is a branch other than dev
     runs-on: ubuntu-latest
     needs: test
     steps:
